@@ -276,9 +276,9 @@
     <script>
         $SCRIPT_ROOT = {{ request.script_root|tojson }};
     </script>
-    <script type="text/javascript" src="{{ url_for('static', filename='chat-init.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='wizard.js') }}"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename='app.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='chat_initializer.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='symptom_wizard.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='chat_interface.js') }}"></script>
     
     <script>
         // Initialize theme on page load

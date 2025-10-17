@@ -1,0 +1,10 @@
+Rename-Item -Path "app.py" -NewName "main.py"
+Rename-Item -Path "chat.py" -NewName "chat_processor.py"
+Rename-Item -Path "model.py" -NewName "neural_network_model.py"
+Rename-Item -Path "model_chat.py" -NewName "chat_model.py"
+Rename-Item -Path "nltk_utils.py" -NewName "text_processing.py"
+Rename-Item -Path "train.py" -NewName "model_training.py"
+
+Rename-Item -Path "static\app.js" -NewName "static\chat_interface.js"
+Rename-Item -Path "static\chat-init.js" -NewName "static\chat_initializer.js"
+Rename-Item -Path "static\wizard.js" -NewName "static\symptom_wizard.js"
