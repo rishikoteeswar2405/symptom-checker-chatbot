@@ -51,76 +51,132 @@
     </style>
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/styles/tailwind.css">
-<link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
-
+  <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+  
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+</head>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  
+  <!-- Theme Switcher -->
+  <script>
+    function initTheme() {
+      const darkMode = localStorage.getItem('darkMode') === 'enabled';
+      const checkbox = document.getElementById('checkbox');
+      if (darkMode) {
+        document.body.classList.add('dark-mode');
+        if (checkbox) checkbox.checked = true;
+      }
+    }
+    
+    function toggleTheme() {
+      const body = document.body;
+      const checkbox = document.getElementById('checkbox');
+      body.classList.toggle('dark-mode');
+      localStorage.setItem('darkMode', body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
+    }
+  </script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: rgb(89, 238, 189); height:70px; padding:20px; text-align: center;color: white; width: 100%;">
-        <a class="navbar-brand" href="#">Welcome</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#" >Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" style="margin-left: -50px;">Features</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#" style="margin-left: -50px;">Contact us</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#" style="margin-left: -50px;">Help ?</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/login" style="margin-left: -50px;">Admin login</a>
-            </li>
-          </ul>
-          <span class="navbar-text">
-            
-          </span>
-        </div>
-      </nav>
-
-      <br><h1 style="font-size:55px; font-weight:bold;">Medical Symptom Checker</h1><br><br>
-    <div class="card" style="width:1250px; height:750px; align-items:center; background-color: aliceblue; padding:20px; border-radius: 50px;">
-    <div class="card-body">   
-    <div class="center-container">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background: var(--primaryGradient); padding: 1rem;">
         <div class="container">
-            <div class="row">
-                <!-- Left Side (Photo) -->
-                <div class="col-md-6">
-                    <img src="./static/images/image1.png" alt="Your Photo" class="img-fluid" style="width:500px; ">
-                </div>
-                
-                <!-- Right Side (Text) -->
-                <div class="col-md-6">
-                    <h1 style="font-size:45px; font-weight:100px;">How the Medical Symptom Checker Works</h1><br><br>
-                    <ol type="circle">
-                        <li>Answer questions about yourself and your medical conditions.</li>
-                        <li>Enter your medical symptoms to receive your health analysis.</li><br><br>
-                    </ol>
-                    <p> You can enter your symptoms by clicking the Chatbox and you can get the Accurate Potential Conditions for it 👇</p>
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="{{ url_for('static', filename='images/bot.jpg') }}" alt="Logo" style="width: 30px; border-radius: 50%; margin-right: 10px;">
+                <span style="font-weight: 600;">HealthBot</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="historyBtn">History</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="emergencyBtn">
+                            <i class="fas fa-ambulance"></i> Emergency
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox" onchange="toggleTheme()" />
+                                <div class="slider round">
+                                    <i class="fas fa-sun"></i>
+                                    <i class="fas fa-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Admin Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold text-primary mb-3">Medical Symptom Checker</h1>
+            <p class="lead text-muted">Get instant insights about your health symptoms</p>
+        </div>
+        
+        <div class="card border-0 shadow-lg" style="border-radius: 24px; background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);">
+            <div class="card-body p-5">   
+                <div class="row align-items-center">
+                    <!-- Left Side (Photo) -->
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <img src="./static/images/image1.png" alt="Medical Assistant" class="img-fluid" style="border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    </div>
+                    
+                    <!-- Right Side (Text) -->
+                    <div class="col-lg-6">
+                        <h2 class="h3 fw-bold mb-4">How it Works</h2>
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="bg-primary text-white rounded-circle p-3 me-3" style="width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;">1</div>
+                            <div>
+                                <h3 class="h5 fw-bold">Share Your Information</h3>
+                                <p class="text-muted">Answer questions about yourself and your medical conditions.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start mb-4">
+                            <div class="bg-primary text-white rounded-circle p-3 me-3" style="width: 45px; height: 45px; display: flex; align-items: center; justify-content: center;">2</div>
+                            <div>
+                                <h3 class="h5 fw-bold">Describe Your Symptoms</h3>
+                                <p class="text-muted">Enter your symptoms in the chatbox for instant analysis.</p>
+                            </div>
+                        </div>
+                        <div class="alert alert-info d-flex align-items-center mt-4" role="alert">
+                            <i class="fas fa-info-circle me-2"></i>
+                            <div>Click the chat button in the bottom right corner to start your consultation</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-</div>
 
  
-<div class="container">
     <div class="chatbox">
         <div class="chatbox__button">
-            <button><img src="{{ url_for('static', filename='images/message.jpg') }}" style="width: 60px; height:50px;"/></button>
+            <button id="chatButton" type="button" aria-label="Open chat">
+                <img src="{{ url_for('static', filename='images/message.jpg') }}" alt="Chat" style="width: 40px; height: 40px;"/>
+            </button>
         </div>
         <div class="chatbox__support">
             <div class="chatbox__header">
@@ -131,24 +187,105 @@
                     <h4 class="chatbox__heading--header">Symptom checker </h4>
                     <p class="chatbox__description--header">Hi, Enter symptoms and get a list of potential conditions</p>
                 </div>
+                <button class="chatbox__close--header">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
             </div>  
             <div class="chatbox__messages">
-                <div>
-                  <div class="messages__item messages__item--visitor">Hi, this is a medical chat support.</div>
-                  <div class="messages__item messages__item--visitor">May I know your name.</div>
+                <div class="messages__wrapper">
+                    <div class="messages__item messages__item--visitor">Hi, this is a medical chat support.</div>
+                    <div class="messages__item messages__item--visitor">May I know your name.</div>
+                </div>
+            </div>
+            <div class="chatbox__wizard" style="display: none;">
+                <div class="wizard-step" data-step="1">
+                    <h5>Basic Information</h5>
+                    <input type="text" placeholder="Your name" class="wizard-input" id="userName">
+                    <input type="number" placeholder="Your age" class="wizard-input" id="userAge">
+                    <select class="wizard-input" id="userGender">
+                        <option value="">Select gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="wizard-step" data-step="2" style="display: none;">
+                    <h5>Symptoms</h5>
+                    <div class="symptom-severity">
+                        <input type="text" placeholder="Enter your symptom" class="wizard-input" id="symptomInput">
+                        <div class="severity-slider">
+                            <label>Severity:</label>
+                            <input type="range" min="1" max="10" value="5" id="severitySlider">
+                            <span id="severityValue">5</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="wizard-step" data-step="3" style="display: none;">
+                    <h5>Additional Information</h5>
+                    <textarea class="wizard-input" placeholder="Any additional details about your symptoms..." id="additionalInfo"></textarea>
+                </div>
+                <div class="wizard-navigation">
+                    <button class="wizard-prev" style="display: none;">Previous</button>
+                    <button class="wizard-next">Next</button>
                 </div>
             </div>
             <div class="chatbox__footer">
-                <input type="text" placeholder="Write a message...">
-                <button class="chatbox__send--footer send__button">Send</button>
+                <div class="chatbox__actions">
+                    <button class="action-button" id="voiceInputBtn" title="Voice Input">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <button class="action-button" id="attachFileBtn" title="Attach File">
+                        <i class="fas fa-paperclip"></i>
+                    </button>
+                </div>
+                <input type="text" placeholder="Write a message..." id="messageInput">
+                <div class="chatbox__actions">
+                    <button class="action-button" id="emojiBtn" title="Add Emoji">
+                        <i class="fas fa-smile"></i>
+                    </button>
+                    <button class="chatbox__send--footer send__button">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+                <div class="voice-recording-indicator">
+                    <i class="fas fa-microphone"></i>
+                    Recording...
+                </div>
+            </div>
+            <div class="floating-actions">
+                <button class="action-button" id="exportChatBtn" title="Export Chat">
+                    <i class="fas fa-download"></i>
+                </button>
+                <button class="action-button" id="scrollToBottomBtn" title="Scroll to Bottom">
+                    <i class="fas fa-arrow-down"></i>
+                </button>
+            </div>
+            <div class="chatbox__typing" style="display: none;">
+                <div class="loading-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </div>
     </div>
 </div>
     <script>
-        $SCRIPT_ROOT = {{ request.script_root|tojson }} ;
+        $SCRIPT_ROOT = {{ request.script_root|tojson }};
     </script>
+    <script type="text/javascript" src="{{ url_for('static', filename='chat-init.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='wizard.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='app.js') }}"></script>
+    
+    <script>
+        // Initialize theme on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initTheme();
+        });
+    </script>
 <br><br><br>
 <footer class="relative bg-blueGray-200 pt-8 pb-6">
   <div class="container mx-auto px-4">
